@@ -48,6 +48,23 @@
       <ul id="taskList" class="space-y-3"></ul>
       <p id="emptyMsg" class="text-center text-slate-500 mt-6">No tasks found.</p>
     </section>
+    <!-- task template with edit and delete buttons -->
+    <template id="taskTpl">
+  <li class="bg-slate-50 border rounded p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 height-anim">
+    <div class="flex items-start sm:items-center gap-3">
+      <input type="checkbox" class="completeToggle" />
+      <div class="flex flex-col">
+        <span class="taskName font-medium"></span>
+        <span class="taskMeta text-xs text-slate-500"></span>
+      </div>
+    </div>
+    <div class="flex gap-2 items-center">
+      <button class="editBtn px-2 py-1 text-sm border rounded">Edit</button>
+      <button class="deleteBtn px-2 py-1 text-sm border rounded">Delete</button>
+    </div>
+  </li>
+</template>
+
 
 
  
