@@ -41,6 +41,27 @@ const filterEl = document.getElementById('filter');
 const sortEl = document.getElementById('sortBy');
 const emptyMsg = document.getElementById('emptyMsg');
 
+function addTask(task) {
+  tasks.push(task);
+  saveTasks();
+  render();
+  console.log('Task added:', task);
+}
+
+taskForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = taskNameInput.value.trim();
+  const due = taskDueInput.value || '';
+  if (!name) {
+    alert('Task name cannot be empty');
+    return;
+  }
+  addTask({ id: genId(), name, due, status: 'pending' });
+  taskForm.reset();
+});
+
+document.getElementById('clearBtn').addEventListener('click', () => taskForm.reset());
+
 
 
 
