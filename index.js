@@ -2,6 +2,28 @@
 function genId() {
   return 't_' + Math.random().toString(36).slice(2, 9);
 }
+function saveTasks() {
+  try {
+    localStorage.setItem('tasks_v1', JSON.stringify(tasks));
+  } catch (e) {
+    console.warn('LocalStorage not available');
+  }
+}
+
+
+function loadTasks() {
+  try {
+    const s = localStorage.getItem('tasks_v1');
+    return s ? JSON.parse(s) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+
+let tasks = loadTasks() || sampleTasks.slice();
+console.log('Tasks initialized:', tasks);
+
 
 
 const sampleTasks = [
@@ -13,6 +35,4 @@ const sampleTasks = [
 ];
 
 
-let tasks = sampleTasks.slice();
 
-console.log('Tasks initialized:', tasks);
