@@ -90,4 +90,55 @@ function editTask(id) {
   saveTasks();
   render();
 }
+filterEl.addEventListener('change', render);
+sortEl.addEventListener('change', render);
+
+function render() {
+  let list = tasks.slice();
+
+  const filter = filterEl.value;
+  if (filter === 'pending') list = list.filter(t => t.status === 'pending');
+  if (filter === 'completed') list = list.filter(t => t.status === 'completed');
+
+  const sortBy = sortEl.value;
+  if (sortBy === 'due-asc') {
+    list.sort((a,b) => (a.due || '9999-12-31').localeCompare(b.due || '9999-12-31'));
+  } else if (sortBy === 'due-desc') {
+    list.sort((a,b) => (b.due || '0000-01-01').localeCompare(a.due || '0000-01-01'));
+  }
+
+  taskList.innerHTML = '';
+
+  if (list.length === 0) {
+    emptyMsg.style.display = 'block';
+    return;
+  } else {
+    emptyMsg.style.display = 'none';
+  }
+
+  const tpl = document.getElementById('taskTpl');
+  list.forEach(task => {
+    const node = tpl.content.cloneNode(true);
+    const li = node.querySelector('li');
+
+    node.querySelector('.taskName').textContent = task.name;
+    node.querySelector('.taskMeta').textContent = task.due ? `Due: ${task.due} • ${task.status}` : `No due date • ${task.status}`;
+    const cb = node.querySelector('.completeToggle');
+    cb.checked = task.status === 'completed';
+
+    if (task.status === 'completed') {
+      li.classList.add('line-through', 'opacity-70', 'bg-green-50');
+    }
+
+    cb.addEventListener('change', () => toggleComplete(task.id));
+    node.querySelector('.editBtn').addEventListener('click', () => editTask(task.id));
+    node.querySelector('.deleteBtn').addEventListener('click', () => deleteTask(task.id));
+
+    taskList.appendChild(node);
+  });
+}
+
+
+render();
+
 
