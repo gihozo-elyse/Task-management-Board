@@ -64,4 +64,30 @@ document.getElementById('clearBtn').addEventListener('click', () => taskForm.res
 
 
 
+function deleteTask(id) {
+  if (!confirm('Delete this task?')) return;
+  tasks = tasks.filter(t => t.id !== id);
+  saveTasks();
+  render();
+}
+
+function toggleComplete(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  t.status = t.status === 'completed' ? 'pending' : 'completed';
+  saveTasks();
+  render();
+}
+
+function editTask(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  const newName = prompt('Edit task name', t.name);
+  if (newName === null) return;
+  const newDue = prompt('Edit due date (YYYY-MM-DD) or leave empty', t.due || '');
+  t.name = newName.trim() || t.name;
+  t.due = (newDue === null) ? t.due : (newDue.trim() || '');
+  saveTasks();
+  render();
+}
 
