@@ -7,27 +7,50 @@
 </head>
 <script src="https://cdn.tailwindcss.com"></script>
 
-<body>
+
+<body class="bg-gray-200 min-h-screen">
     <div class="max-w-4xl mx-auto">
     
-    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-      <h1 class="text-2xl sm:text-3xl font-semibold">Task Management pro</h1>
-      
+    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 mt-4">
+      <div class="flex flex-col sm:flex-row sm:items-center  gap-3">
+        <img src="elyse.jpg" alt="Profile" class="w-20 h-20  sm:w-20 sm:h-20 rounded-full border border-gray-300 shadow">
+    
+      <h1 class="text-2xl text-orange-600 sm:text-3xl font-semibold">Task Management pro</h1>
+       </div>
+       
+
+
     </header>
-     <section class="bg-white shadow rounded-lg p-4 mb-6">
+    <div class="overflow-hidden mt-4">
+  <p class="text-xl font-medium text-orange-700 whitespace-nowrap animate-[slideLeft_20s_linear_infinite]">
+    “You can do anything, but not everything. Task management is choosing what matters most — and finishing it.”
+  </p>
+</div>
+
+<style>
+  @keyframes slideLeft {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
+     <section class="bg-white shadow rounded-lg p-4 mb-6 mt-4" >
       <form id="taskForm" class="flex flex-col md:flex-row md:items-center gap-3">
-        <input id="taskName" type="text" placeholder="Task name" class="flex-1 px-3 py-2 border rounded focus:outline-none" required />
-        <input id="taskDue" type="date" class="px-3 py-2 border rounded" />
+        <input id="taskName" type="text" placeholder="Task name" class="flex-1 px-3 py-2 border rounded border border-orange-600 rounded focus:ring-2 focus:ring-orange-700 focus:outline-none" required />
+        <input id="taskDue" type="date" class="px-3 py-2 border rounded border border-orange-600 rounded focus:ring-2 focus:ring-orange-700 focus:outline-none" />
         <div class="flex gap-2">
-          <button type="submit" class="bg-slate-800 text-white px-4 py-2 rounded">Add Task</button>
-          <button id="clearBtn" type="button" class="px-4 py-2 border rounded">Clear</button>
+          <button type="submit" class="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700   ">Add Task</button>
+          <button id="clearBtn" type="button" class="px-4 py-2 border border-orange-600 rounded focus:ring-2 focus:ring-orange-700 focus:outline-none">Clear</button>
         </div>
       </form>
 
       <div class="flex items-center justify-between mt-4 gap-3">
         <div class="flex gap-2 items-center">
           <label class="text-sm">Filter:</label>
-          <select id="filter" class="px-2 py-1 border rounded">
+          <select id="filter" class="px-2 py-1 border rounded border border-orange-600 rounded focus:ring-2 focus:ring-orange-700 focus:outline-none">
             <option value="all">All</option>
             <option value="pending">Pending</option>
             <option value="completed">Completed</option>
@@ -36,7 +59,7 @@
 
         <div class="flex gap-2 items-center">
           <label class="text-sm">Sort by:</label>
-          <select id="sortBy" class="px-2 py-1 border rounded">
+          <select id="sortBy" class="px-2 py-1 border rounded border border-orange-600 rounded focus:ring-2 focus:ring-orange-700 focus:outline-none">
             <option value="none">None</option>
             <option value="due-asc">Due Date </option>
             <option value="due-desc">Due Date </option>
@@ -49,19 +72,21 @@
       <ul id="taskList" class="space-y-3"></ul>
       <p id="emptyMsg" class="text-center text-slate-500 mt-6">No tasks found.</p>
     </section>
-    <!-- task template with edit and delete buttons -->
-    <template id="taskTpl">
-  <li class="bg-slate-50 border rounded p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 height-anim">
-    <div class="flex items-start sm:items-center gap-3">
-      <input type="checkbox" class="completeToggle" />
+
+    
+
+    <template id="taskTpl" class="bg-red-800">
+  <li class="bg-gray-50 border rounded p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 height-anim border border-gray-600  ">
+    <div class="flex items-start sm:items-center gap-3 ">
+      <input type="checkbox" class="completeToggle  accent-orange-600 w-5 h-5 rounded cursor-pointer" />
       <div class="flex flex-col">
         <span class="taskName font-medium"></span>
         <span class="taskMeta text-xs text-slate-500"></span>
       </div>
     </div>
     <div class="flex gap-2 items-center">
-      <button class="editBtn px-2 py-1 text-sm border rounded">Edit</button>
-      <button class="deleteBtn px-2 py-1 text-sm border rounded">Delete</button>
+      <button class="editBtn px-2 py-1 text-sm border rounded bg-orange-800 hover:bg-orange-600">Edit</button>
+      <button class="deleteBtn px-2 py-1 text-sm border rounded bg-orange-600 hover:bg-orange-800 ">Delete</button>
     </div>
   </li>
 </template>

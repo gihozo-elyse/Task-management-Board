@@ -32,7 +32,7 @@ const sampleTasks = [
   { id: genId(), name: 'to buy gift of my sister', due: '2025-10-07', status: 'pending' },
   { id: genId(), name: 'attending my sister,s graduation party', due: '2025-10-17', status: 'pending' },
   { id: genId(), name: 'to do more exercise about dom and function', due: '2025-10-05', status: 'pending' }
-];
+]; 
 const taskList = document.getElementById('taskList');
 const taskForm = document.getElementById('taskForm');
 const taskNameInput = document.getElementById('taskName');
@@ -40,6 +40,8 @@ const taskDueInput = document.getElementById('taskDue');
 const filterEl = document.getElementById('filter');
 const sortEl = document.getElementById('sortBy');
 const emptyMsg = document.getElementById('emptyMsg');
+const themeToggle = document.getElementById("themeToggle");
+
 
 function addTask(task) {
   tasks.push(task);
@@ -127,7 +129,7 @@ function render() {
     cb.checked = task.status === 'completed';
 
     if (task.status === 'completed') {
-      li.classList.add('line-through', 'opacity-70', 'bg-green-50');
+      li.classList.add('line-through', 'opacity-70', 'bg-green-200');
     }
 
     cb.addEventListener('change', () => toggleComplete(task.id));
