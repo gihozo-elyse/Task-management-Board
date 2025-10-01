@@ -26,4 +26,9 @@ project-folder/
 
 
 ![grid](./scrn.png)
+## “Here’s how to install or set up this project.”
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/gihozo-elyse/To-Do-List-Application
 
