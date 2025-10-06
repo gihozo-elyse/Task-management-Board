@@ -21,8 +21,7 @@ function loadTasks() {
 }
 
 
-let tasks = loadTasks() || sampleTasks.slice();
-console.log('Tasks initialized:', tasks);
+
 
 
 
@@ -33,6 +32,9 @@ const sampleTasks = [
   { id: genId(), name: 'attending my sister,s graduation party', due: '2025-10-17', status: 'pending' },
   { id: genId(), name: 'to do more exercise about dom and function', due: '2025-10-05', status: 'pending' }
 ]; 
+let tasks = loadTasks() || sampleTasks.slice();
+console.log('Tasks initialized:', tasks);
+
 const taskList = document.getElementById('taskList');
 const taskForm = document.getElementById('taskForm');
 const taskNameInput = document.getElementById('taskName');
